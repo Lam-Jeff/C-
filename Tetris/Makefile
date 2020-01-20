@@ -50,8 +50,10 @@ OBJECTS_DIR   = build/
 
 ####### Files
 
-SOURCES       = src/test.cpp 
-OBJECTS       = build/test.o
+SOURCES       = src/Piece.cpp \
+		src/test.cpp 
+OBJECTS       = build/Piece.o \
+		build/test.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -106,6 +108,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -124,7 +127,11 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		Tetris.pro include/shapes.h src/test.cpp
+		Tetris.pro include/Application.h \
+		include/Board.h \
+		include/Piece.h \
+		include/shapes.h src/Piece.cpp \
+		src/test.cpp
 QMAKE_TARGET  = Tetris
 DESTDIR       = bin/
 TARGET        = bin/Tetris
@@ -191,6 +198,7 @@ Makefile: Tetris.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -268,6 +276,7 @@ Makefile: Tetris.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -305,8 +314,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents include/shapes.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/test.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents include/Application.h include/Board.h include/Piece.h include/shapes.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Piece.cpp src/test.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -353,6 +362,10 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean 
 
 ####### Compile
+
+build/Piece.o: src/Piece.cpp include/Piece.h \
+		include/shapes.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Piece.o src/Piece.cpp
 
 build/test.o: src/test.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/test.o src/test.cpp
