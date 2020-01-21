@@ -2,7 +2,7 @@
 
 Piece::Piece() {}
 
-Piece::Piece (int orientation = 1, int forme) {
-  this->forme = forme;
-  this->orientation = orientation;
+Piece::Piece (int f, int o ) {
+  this->forme = f;
+  this->orientation = o;
 }

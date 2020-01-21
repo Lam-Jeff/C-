@@ -1,10 +1,9 @@
 #ifndef SHAPES_H
 #define SHAPES_H
-const int NB_SHAPES = 7;
 const int NB_ROTATIONS = 4;
 const int SIZE = 4;
 
-static int O_Piece [NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
+static int O_Piece [NB_ROTATIONS][SIZE][SIZE] =
 {
   {
     {0, 0, 0, 0},
@@ -33,7 +32,7 @@ static int O_Piece [NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int I_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] = 
+static int I_Piece[NB_ROTATIONS][SIZE][SIZE] = 
 {
   {
     {0, 0, 0, 0},
@@ -62,7 +61,7 @@ static int I_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int S_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] = 
+static int S_Piece[NB_ROTATIONS][SIZE][SIZE] = 
 {
   {
     {0, 0, 0, 0},
@@ -91,7 +90,7 @@ static int S_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int Z_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] = 
+static int Z_Piece[NB_ROTATIONS][SIZE][SIZE] = 
 {
   {
     {0, 0, 0, 0},
@@ -120,7 +119,7 @@ static int Z_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int L_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
+static int L_Piece[NB_ROTATIONS][SIZE][SIZE] =
 {
   {
     {0, 0, 0, 0},
@@ -149,7 +148,7 @@ static int L_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int J_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] = 
+static int J_Piece[NB_ROTATIONS][SIZE][SIZE] = 
 {
   {
     {0, 0, 0, 0},
@@ -178,7 +177,7 @@ static int J_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] =
 
 };
 
-static int T_Piece[NB_SHAPES][NB_ROTATIONS][SIZE][SIZE] = 
+static int T_Piece[NB_ROTATIONS][SIZE][SIZE] = 
 {
   {
     {0, 0, 0, 0},

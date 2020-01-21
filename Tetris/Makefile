@@ -50,10 +50,12 @@ OBJECTS_DIR   = build/
 
 ####### Files
 
-SOURCES       = src/Piece.cpp \
-		src/test.cpp 
-OBJECTS       = build/Piece.o \
-		build/test.o
+SOURCES       = src/Board.cpp \
+		src/game.cpp \
+		src/Piece.cpp 
+OBJECTS       = build/Board.o \
+		build/game.o \
+		build/Piece.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -130,8 +132,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		Tetris.pro include/Application.h \
 		include/Board.h \
 		include/Piece.h \
-		include/shapes.h src/Piece.cpp \
-		src/test.cpp
+		include/shapes.h src/Board.cpp \
+		src/game.cpp \
+		src/Piece.cpp
 QMAKE_TARGET  = Tetris
 DESTDIR       = bin/
 TARGET        = bin/Tetris
@@ -315,7 +318,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents include/Application.h include/Board.h include/Piece.h include/shapes.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/Piece.cpp src/test.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/Board.cpp src/game.cpp src/Piece.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -363,12 +366,19 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
+build/Board.o: src/Board.cpp include/Board.h \
+		include/Piece.h \
+		include/shapes.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Board.o src/Board.cpp
+
+build/game.o: src/game.cpp include/Board.h \
+		include/Piece.h \
+		include/shapes.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/game.o src/game.cpp
+
 build/Piece.o: src/Piece.cpp include/Piece.h \
 		include/shapes.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Piece.o src/Piece.cpp
-
-build/test.o: src/test.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/test.o src/test.cpp
 
 ####### Install
 

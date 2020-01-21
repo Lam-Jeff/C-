@@ -13,6 +13,8 @@ enum {
   PURPLE
 };
 
+const int roatation_X = 1;
+const int rotation_Y = 2;
 
 
 class Piece {
@@ -26,7 +28,7 @@ class Piece {
 
   public :
     Piece ();
-    Piece (int orientation = 1, int forme);
+    Piece (int f, int o = 1);
 
 
     void setForme (int f) {this->forme = f;}
@@ -34,8 +36,8 @@ class Piece {
     void setCouleur (int c) {this->couleur = c;}
 
     int getForme () {return forme;}
-    int getOrientation {return orientation;}
-    int getCouleur () {return couleur}
+    int getOrientation (){return orientation;}
+    int getCouleur () {return couleur;}
 
     //Position
     void setX (int x) {this->X = x;}
