@@ -27,6 +27,9 @@ class Board {
     bool isMovePossible ();
     bool isPieceRotable (int o);
 
+    void flood (int i, int j, int piece_x, int piece_y, int k, int o, int value, bool visited [][SIZE]);
+    void floodFill (int i, int j, int piece_x, int piece_y, int o, int value );
+
     void newPiece(Piece p);
     void drawPiece(Piece p);
    
